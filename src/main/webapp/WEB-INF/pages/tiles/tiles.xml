@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="base-definition"
+                template="/WEB-INF/pages/tiles/layout/defaultLayout.jsp">
+        <put-attribute name="title" value=""></put-attribute>
+        <put-attribute name="header"
+                       value="/WEB-INF/pages/tiles/template/defaultHeader.jsp">
+        </put-attribute>
+        <put-attribute name="footer"
+                       value="/WEB-INF/pages/tiles/template/defaultFooter.jsp">
+        </put-attribute>
+        <put-attribute name="menu"
+                       value="/WEB-INF/pages/tiles/template/defaultMenu.jsp">
+        </put-attribute>
+        <put-attribute name="body" value=""></put-attribute>
+    </definition>
+
+    <!-- index page -->
+    <definition name="home" extends="base-definition">
+        <put-attribute name="title" value="Home page"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/index.jsp">
+        </put-attribute>
+    </definition>
+        
+    <!-- ##################################################################################### -->
+    <!-- MOVIE -->
+    <definition name="movie/home" extends="base-definition">
+        <put-attribute name="title" value="Home movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/home.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="movie/add" extends="base-definition">
+        <put-attribute name="title" value="Add movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/add.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="movie/all" extends="base-definition">
+        <put-attribute name="title" value="All movies"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/all.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="movie/view" extends="base-definition">
+        <put-attribute name="title" value="View movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/view.jsp">
+        </put-attribute>
+    </definition>
+
+    <!-- ##################################################################################### -->
+    <!-- EXCEPTION -->
+    <definition name="error/globalException"
+                extends="base-definition">
+        <put-attribute name="title"
+                       value="Exception">
+        </put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/error/globalException.jsp">
+        </put-attribute>
+    </definition>	
+	
+
+
+
+</tiles-definitions>
