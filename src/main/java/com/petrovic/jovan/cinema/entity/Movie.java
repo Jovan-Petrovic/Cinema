@@ -43,6 +43,15 @@ public class Movie implements Serializable {
         this.ratingIMDb = ratingIMDb;
     }
 
+    public Movie(String title, int duration, Genre genre, int year, String language, double ratingIMDb) {
+        this.title = title;
+        this.duration = duration;
+        this.genre = genre;
+        this.year = year;
+        this.language = language;
+        this.ratingIMDb = ratingIMDb;
+    }
+
     public Long getId() {
         return id;
     }
@@ -146,6 +155,11 @@ public class Movie implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" + "id=" + id + ", title=" + title + ", duration=" + duration + ", genre=" + genre + ", year=" + year + ", language=" + language + ", ratingIMDb=" + ratingIMDb + '}';
     }
     
     

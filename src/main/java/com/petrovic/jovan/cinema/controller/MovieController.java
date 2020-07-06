@@ -8,12 +8,20 @@ package com.petrovic.jovan.cinema.controller;
 import com.petrovic.jovan.cinema.dto.Genre;
 import com.petrovic.jovan.cinema.dto.MovieDto;
 import com.petrovic.jovan.cinema.service.MovieService;
+import com.petrovic.jovan.cinema.validator.MovieValidator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,10 +35,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MovieController {
     
     private final MovieService movieService;
+    private final MovieValidator movieValidator;
 
     @Autowired
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, MovieValidator movieValidator) {
         this.movieService = movieService;
+        this.movieValidator = movieValidator;
     }
 
     @GetMapping
@@ -53,8 +63,51 @@ public class MovieController {
     
     @GetMapping(value = "all")
     public ModelAndView getAll() {
+        System.out.println("====================================================================");
+        System.out.println("====================   MovieController: all()     ===================");
+        System.out.println("====================================================================");
         ModelAndView modelAndView = new ModelAndView("movie/all");
         modelAndView.addObject("message", "All movies!");
+        return modelAndView;
+    }
+    
+    @PostMapping(value = "save")
+    public String save(@ModelAttribute(name = "movieDto") @Validated MovieDto movieDto, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+        System.out.println("===================================================================================");
+        System.out.println("====================   MovieController: save(@ModelAttribute)    ==================");
+        System.out.println("===================================================================================");
+        System.out.println(movieDto);
+        ModelAndView modelAndView = new ModelAndView();
+        if (result.hasErrors()) {
+            model.addAttribute("invalid", "One or more fields are invalid");
+            model.addAttribute("movieDto", movieDto);
+            return "movie/add";
+        } else {
+            movieService.save(movieDto);
+            redirectAttributes.addFlashAttribute("message", "Movie is saved");
+            return "redirect:/movie/add";
+        }
+    }
+    
+    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+        binder.setValidator(movieValidator);
+    }
+    
+    @GetMapping(value = "/{id}/view")
+    public ModelAndView view(@PathVariable(name = "id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("movie/view");
+        modelAndView.addObject("message", "Movie " + id + "!");
+        modelAndView.addObject("movieDto", movieService.findByNumber(id));
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/{id}/delete")
+    public ModelAndView delete(@PathVariable(name = "id") Long id) {
+        System.out.println("Delete..." + id);
+        movieService.delete(id);
+        ModelAndView modelAndView = new ModelAndView("movie/all");
+        modelAndView.addObject("message", "Movie " + id + " is deleted!");
         return modelAndView;
     }
     
@@ -67,7 +120,7 @@ public class MovieController {
     private MovieDto getCityDto() {
         return new MovieDto(0L, "/", 0, Genre.TRILER, 0, "/", 0d);
     }
-    
+    /*
     @ExceptionHandler(NullPointerException.class)
 	public String exceptionHandler(NullPointerException nullPointerException,RedirectAttributes redirectAttributes) {
 		
@@ -79,5 +132,5 @@ public class MovieController {
 		redirectAttributes.addFlashAttribute("errorObj", nullPointerException);
 		
 		return "redirect:/error/globalException";
-	}
+	}*/
 }

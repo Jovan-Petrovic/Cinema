@@ -1,5 +1,6 @@
 package com.petrovic.jovan.cinema.config;
 
+import com.petrovic.jovan.cinema.formatter.MovieDtoFormatter;
 import com.petrovic.jovan.cinema.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -68,10 +69,10 @@ public class DemoWebContextConfig implements WebMvcConfigurer {
         return messageSource;
     }
 
-//    @Override
-//    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new MovieDtoFormater(movieService));
-//    }
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new MovieDtoFormatter(movieService));
+    }
 
     
 }

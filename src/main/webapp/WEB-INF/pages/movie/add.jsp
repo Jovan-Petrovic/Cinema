@@ -11,12 +11,6 @@
 
     <div class="container-fluid">
         <form:form action="${pageContext.request.contextPath}/movie/save" method="post" modelAttribute="movieDto">
-            
-            <div>Movie id:</div>
-            <div><form:input type="text" id="id" path="id"/></div>
-            <div class="text-danger">
-                <form:errors path="id" cssClass="error" />
-            </div>
 
             <div>Movie title:</div>
             <div><form:input type="text" id="title" path="title" /></div>

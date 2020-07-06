@@ -14,5 +14,13 @@ import java.util.List;
  */
 public interface MovieService {
     List<MovieDto> getAll();
+
+    public Object findByNumber(Long id);
+
+    public void delete(Long id);
+
+    public MovieDto findByName(String name);
+
+    public void save(MovieDto movieDto);
     
 }

@@ -51,7 +51,8 @@ public class DatabaseConfiguration {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop"); // automatski kreiraj tabele na osnovu entity klasa
+//        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop"); // automatski kreiraj tabele na osnovu entity klasa
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         properties.setProperty("hibernate.show_sql", "true");
 
