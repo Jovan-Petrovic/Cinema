@@ -5,6 +5,7 @@
  */
 package com.petrovic.jovan.cinema.service.impl;
 
+import com.petrovic.jovan.cinema.converter.MovieConverter;
 import com.petrovic.jovan.cinema.dto.Genre;
 import com.petrovic.jovan.cinema.dto.MovieDto;
 import com.petrovic.jovan.cinema.entity.Movie;
@@ -33,7 +34,6 @@ public class MovieServiceImpl implements MovieService{
         // ToDo: napraviti konverter iz ENTITY u DTO
         List<MovieDto> movieDtos = new ArrayList<>();
         for (Movie movie : movies) {
-            System.out.println(movie);
             movieDtos.add(new MovieDto(movie.getId(), movie.getTitle(), movie.getDuration(), movie.getGenre(), movie.getYear(), movie.getLanguage(), movie.getRatingIMDb()));
         }
         return movieDtos;
@@ -41,7 +41,6 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public MovieDto findByNumber(Long id) {
-        System.out.println("FIND BY NUMBER");
         Movie movie = movieRepository.getById(id);
         MovieDto movieDto = new MovieDto(movie.getId(), movie.getTitle(), movie.getDuration(), movie.getGenre(), movie.getYear(), movie.getLanguage(), movie.getRatingIMDb());
         return movieDto;
@@ -53,8 +52,11 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public MovieDto findByName(String name) {
-        return new MovieDto();
+    public MovieDto findByTitle(String title) {
+        Movie movie = movieRepository.findByTitle(title);
+        System.out.println(movie);
+        MovieDto movieDto = MovieConverter.convertFromEntityToDto(movie);
+        return movieDto;
     }
 
     @Override

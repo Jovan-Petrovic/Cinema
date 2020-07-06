@@ -15,6 +15,19 @@
                 <a class="dropdown-item" href="<c:url value = "/movie/add"/>">Movie add</a>
                 <a class="dropdown-item" href="<c:url value = "/movie/all"/>">Movie all</a>
             </div>
+            
+        </div>   
+    </ul>
+    <ul class="navbar-nav mr-auto d-flex justify-content-end">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Projection
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="<c:url value = "/projection"/>">Projection home</a>
+                <a class="dropdown-item" href="<c:url value = "/projection/add"/>">Projection add</a>
+                <a class="dropdown-item" href="<c:url value = "/projection/all"/>">Projection all</a>
+            </div> 
         </div>
     </ul>
 </nav>

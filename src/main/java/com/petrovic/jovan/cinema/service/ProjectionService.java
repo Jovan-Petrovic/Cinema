@@ -5,22 +5,21 @@
  */
 package com.petrovic.jovan.cinema.service;
 
-import com.petrovic.jovan.cinema.dto.MovieDto;
+import com.petrovic.jovan.cinema.dto.ProjectionDto;
 import java.util.List;
 
 /**
  *
  * @author Bron Zilar
  */
-public interface MovieService {
-    List<MovieDto> getAll();
+public interface ProjectionService {
+    List<ProjectionDto> getAll();
 
-    public Object findByNumber(Long id);
+    public ProjectionDto findByNumber(Long id);
 
     public void delete(Long id);
 
-    public MovieDto findByTitle(String title);
+    public ProjectionDto findByName(String name);
 
-    public void save(MovieDto movieDto);
-    
+    public void save(ProjectionDto projectionDto);
 }

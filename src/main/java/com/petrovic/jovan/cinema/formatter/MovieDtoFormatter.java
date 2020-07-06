@@ -34,7 +34,7 @@ public class MovieDtoFormatter implements Formatter<MovieDto> {
     public MovieDto parse(String title, Locale locale) throws ParseException {
         System.out.println("==============================================");
         System.out.println("MovieDtoFormater: Movie title -> " + title);
-        return movieService.findByName(title);
+        return movieService.findByTitle(title);
     }
     
 }

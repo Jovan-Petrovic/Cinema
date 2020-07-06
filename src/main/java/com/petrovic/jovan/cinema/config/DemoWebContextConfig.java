@@ -65,7 +65,7 @@ public class DemoWebContextConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasenames("validation");
+        messageSource.setBasenames("validationMovie", "validationProjection");
         return messageSource;
     }
 
