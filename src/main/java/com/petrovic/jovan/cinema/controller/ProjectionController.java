@@ -88,7 +88,7 @@ public class ProjectionController {
             return "projection/add";
         } else {
             projectionService.save(projectionDto);
-            redirectAttributes.addFlashAttribute("message", "Projection is saved");
+            redirectAttributes.addFlashAttribute("messageProjection", "Projection is saved");
             return "redirect:/projection/add";
         }
     }
@@ -100,7 +100,7 @@ public class ProjectionController {
     
     @GetMapping(value = "/{id}/view")
     public ModelAndView view(@PathVariable(name = "id") Long id) {
-        ModelAndView modelAndView = new ModelAndView("movie/view");
+        ModelAndView modelAndView = new ModelAndView("projection/view");
         modelAndView.addObject("message", "Projection " + id + "!");
         modelAndView.addObject("projectionDto", projectionService.findByNumber(id));
         return modelAndView;

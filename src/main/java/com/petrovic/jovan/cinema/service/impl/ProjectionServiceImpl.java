@@ -42,6 +42,7 @@ public class ProjectionServiceImpl implements ProjectionService{
     public ProjectionDto findByNumber(Long id) {
         Projection projection = projectionRepository.getById(id);
         ProjectionDto projectionDto = ProjectionConverter.convertFromEntityToDto(projection);
+        System.out.println(projectionDto);
         return projectionDto;
     }
 

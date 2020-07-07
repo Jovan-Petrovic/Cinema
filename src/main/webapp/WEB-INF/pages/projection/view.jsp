@@ -35,9 +35,9 @@
             </div>
             
             <div>Projection movie:</div>
-            <div><form:input type="text" id="movieDto" path="movieDto" readonly="true"/></div>
+            <div><form:input type="text" id="movieDto.title" path="movieDto.title" readonly="true"/></div>
             <div class="text-danger">
-                <form:errors path="movieDto" cssClass="error" />
+                <form:errors path="movieDto.title" cssClass="error" />
             </div>
             
            <p/>
