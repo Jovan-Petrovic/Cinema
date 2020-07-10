@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="#">My web MVC Cinema application</a>
+    <a class="navbar-brand" href="#">Cinema web MVC application</a>
     <ul class="navbar-nav mr-auto d-flex justify-content-end">
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,5 +27,17 @@
                 <a class="dropdown-item" href="<c:url value = "/user/projection/all"/>">Projection all</a>
             </div> 
         </div>
+    </ul>
+    <ul class="navbar-nav mr-auto d-flex justify-content-end">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Reservation
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="<c:url value = "/user/reservation"/>">Reservation home</a>
+                <a class="dropdown-item" href="<c:url value = "/user/reservation/all"/>">All yours reservations</a>
+            </div>
+            
+        </div>   
     </ul>
 </nav>

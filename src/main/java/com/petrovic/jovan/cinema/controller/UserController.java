@@ -59,6 +59,14 @@ public class UserController {
         return "user/projection/home";
     }
     
+    @GetMapping(value = "reservation")
+    public String homeUserReservation() {
+        System.out.println("====================================================================");
+        System.out.println("====================   UserController: homeReservations()    ===================");
+        System.out.println("====================================================================");
+        return "user/reservation/home";
+    }
+    
     @GetMapping(value = "movie/all")
     public ModelAndView getAllMovies() {
         System.out.println("====================================================================");

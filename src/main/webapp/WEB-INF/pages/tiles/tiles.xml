@@ -140,6 +140,12 @@
                        value="/WEB-INF/pages/user/projection/view.jsp">
         </put-attribute>
     </definition>
+    <definition name="user/reservation/home" extends="base-definition_user">
+        <put-attribute name="title" value="Home reservation"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/reservation/home.jsp">
+        </put-attribute>
+    </definition>
     
 
     <!-- ##################################################################################### -->
