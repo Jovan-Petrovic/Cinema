@@ -28,7 +28,7 @@ import javax.persistence.TableGenerator;
 public class Projection implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PROJECTION")
-    @TableGenerator(name = "PROJECTION", table = "GEN_ID", 
+    @TableGenerator(name = "PROJECTION", table = "GEN_ID_PROJECTION", 
             pkColumnName = "PK_GEN",valueColumnName = "VALUE_GEN",
             pkColumnValue = "TBL_PROJECTION",
             initialValue = 0, allocationSize = 1)

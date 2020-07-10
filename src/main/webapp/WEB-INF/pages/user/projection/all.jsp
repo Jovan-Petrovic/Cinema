@@ -42,11 +42,8 @@
                                             action
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="<c:url value = "/projection/${projection.id}/delete/">
 
-                                                </c:url>">Delete</a>
-
-                                            <a class="dropdown-item" href="<c:url value = "/projection/${projection.id}/view/">
+                                            <a class="dropdown-item" href="<c:url value = "/user/projection/${projection.id}/view/">
 
                                                 </c:url>">View</a>
                                         </div>

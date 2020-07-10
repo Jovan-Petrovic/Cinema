@@ -16,25 +16,29 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Id</th>
-                        <th scope="col">Date and time</th>
-                        <th scope="col">Room</th>
-                        <th scope="col">Remainig seats</th>
-                        <th scope="col">Movie</th> 
+                        <th scope="col">Title</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Language</th>
+                        <th scope="col">IMDb rating</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach
-                        items="${projections}"
-                        var="projection"
+                        items="${movies}"
+                        var="movie"
                         varStatus="loop">
                         <tr>
                             <td>${loop.index+1}</td>
-                            <td>${projection.id}</td>
-                            <td>${projection.dateTime}</td>
-                            <td>${projection.room}</td>
-                            <td>${projection.remainingSeats}</td>
-                            <td>${projection.movieDto.title}</td>
+                            <td>${movie.id}</td>
+                            <td>${movie.title}</td>
+                            <td>${movie.duration}</td>
+                            <td>${movie.genre}</td>
+                            <td>${movie.year}</td>
+                            <td>${movie.language}</td>
+                            <td>${movie.ratingIMDb}</td>
                             <td>
                                 <ul class="navbar-nav mr-auto d-flex justify-content-end">
                                     <div class="dropdown">
@@ -42,11 +46,7 @@
                                             action
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="<c:url value = "/projection/${projection.id}/delete/">
-
-                                                </c:url>">Delete</a>
-
-                                            <a class="dropdown-item" href="<c:url value = "/projection/${projection.id}/view/">
+                                            <a class="dropdown-item" href="<c:url value = "/user/movie/${movie.id}/view/">
 
                                                 </c:url>">View</a>
                                         </div>
