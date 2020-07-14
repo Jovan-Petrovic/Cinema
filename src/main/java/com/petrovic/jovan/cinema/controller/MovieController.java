@@ -5,8 +5,12 @@
  */
 package com.petrovic.jovan.cinema.controller;
 
+import com.petrovic.jovan.cinema.dto.ActorDto;
+import com.petrovic.jovan.cinema.dto.DirectorDto;
 import com.petrovic.jovan.cinema.dto.Genre;
 import com.petrovic.jovan.cinema.dto.MovieDto;
+import com.petrovic.jovan.cinema.service.ActorService;
+import com.petrovic.jovan.cinema.service.DirectorService;
 import com.petrovic.jovan.cinema.service.MovieService;
 import com.petrovic.jovan.cinema.validator.MovieValidator;
 import java.util.List;
@@ -16,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,11 +39,15 @@ public class MovieController {
     
     private final MovieService movieService;
     private final MovieValidator movieValidator;
+    private final DirectorService directorService;
+    private final ActorService actorService;
 
     @Autowired
-    public MovieController(MovieService movieService, MovieValidator movieValidator) {
+    public MovieController(MovieService movieService, MovieValidator movieValidator, DirectorService directorService, ActorService actorService) {
         this.movieService = movieService;
         this.movieValidator = movieValidator;
+        this.directorService = directorService;
+        this.actorService = actorService;
     }
 
     @GetMapping
@@ -112,7 +119,7 @@ public class MovieController {
     }
     
     @ModelAttribute(name = "movies")
-    private List<MovieDto> getCities() {
+    private List<MovieDto> getMovies() {
         return movieService.getAll();
     }
     
@@ -120,6 +127,17 @@ public class MovieController {
     private MovieDto getCityDto() {
         return new MovieDto(0L, "/", 0, Genre.TRILER, 0, "/", 0d);
     }
+    
+    @ModelAttribute(name = "directors")
+    private List<DirectorDto> getDirectors() {
+        return directorService.getAll();
+    }
+    
+    @ModelAttribute(name = "actors")
+    private List<ActorDto> getActors() {
+        return actorService.getAll();
+    }
+    
     /*
     @ExceptionHandler(NullPointerException.class)
 	public String exceptionHandler(NullPointerException nullPointerException,RedirectAttributes redirectAttributes) {

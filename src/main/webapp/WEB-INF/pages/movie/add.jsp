@@ -12,6 +12,20 @@
     <div class="container-fluid">
         <form:form action="${pageContext.request.contextPath}/movie/save" method="post" modelAttribute="movieDto">
 
+            <div class="form-label-group">
+                <label for="directorDtos">Directors</label>
+                <form:select path="directorDtos" id="directorDtos" class="form-control">
+                    <form:options items="${directors}" itemLabel="name" itemValue="name" ></form:options>
+                </form:select>
+            </div>
+            
+            <div class="form-label-group">
+                <label for="actorDtos">Actors</label>
+                <form:select path="actorDtos" id="actorDtos" class="form-control">
+                    <form:options items="${actors}" itemLabel="name" itemValue="name" ></form:options>
+                </form:select>
+            </div>
+            
             <div>Movie title:</div>
             <div><form:input type="text" id="title" path="title" /></div>
             <div class="text-danger">

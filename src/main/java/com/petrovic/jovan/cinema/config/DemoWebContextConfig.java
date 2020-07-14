@@ -1,6 +1,10 @@
 package com.petrovic.jovan.cinema.config;
 
+import com.petrovic.jovan.cinema.formatter.ActorDtoFormatter;
+import com.petrovic.jovan.cinema.formatter.DirectorDtoFormatter;
 import com.petrovic.jovan.cinema.formatter.MovieDtoFormatter;
+import com.petrovic.jovan.cinema.service.ActorService;
+import com.petrovic.jovan.cinema.service.DirectorService;
 import com.petrovic.jovan.cinema.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -32,10 +36,14 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 public class DemoWebContextConfig implements WebMvcConfigurer {
 
     private final MovieService movieService;
+    private final DirectorService directorService;
+    private final ActorService actorService;
 
     @Autowired
-    public DemoWebContextConfig(MovieService movieService) {
+    public DemoWebContextConfig(MovieService movieService, DirectorService directorService, ActorService actorService) {
         this.movieService = movieService;
+        this.directorService = directorService;
+        this.actorService = actorService;
     }
 
     // configure Viewesolver
@@ -72,6 +80,8 @@ public class DemoWebContextConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new MovieDtoFormatter(movieService));
+        registry.addFormatter(new DirectorDtoFormatter(directorService));
+        registry.addFormatter(new ActorDtoFormatter(actorService));
     }
 
     

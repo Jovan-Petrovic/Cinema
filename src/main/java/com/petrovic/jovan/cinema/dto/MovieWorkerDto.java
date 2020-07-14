@@ -3,37 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.petrovic.jovan.cinema.entity;
+package com.petrovic.jovan.cinema.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
 /**
  *
  * @author Bron Zilar
  */
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "MOVIE_WORKER_TYPE")
-public abstract class MovieWorker implements  Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "GEN_MOVIE_WORKER")
-    @TableGenerator(name = "GEN_MOVIE_WORKER", table = "GEN_ID_MOVIE_WORKER",
-            pkColumnName = "PK_GEN", valueColumnName = "VALUE_GEN",
-            pkColumnValue = "TBL_MOVIE_WORKER", initialValue = 0, allocationSize = 1)
-    private Long id;
-    
-    private String name;
-    private String nationality;
+public abstract class MovieWorkerDto implements Serializable {
+    protected static final long serialVersionUID = 2151959395889955260L;
+    protected Long id; 
+    protected String name;
+    protected String nationality;
+
+    public MovieWorkerDto() {
+    }
+
+    public MovieWorkerDto(Long id, String firstname, String nationality) {
+        this.id = id;
+        this.name = firstname;
+        this.nationality = nationality;
+    }
 
     public Long getId() {
         return id;
@@ -51,6 +43,8 @@ public abstract class MovieWorker implements  Serializable {
         this.name = name;
     }
 
+    
+
     public String getNationality() {
         return nationality;
     }
@@ -60,16 +54,11 @@ public abstract class MovieWorker implements  Serializable {
     }
 
     @Override
-    public String toString() {
-        return "MovieWorker{" + "id=" + id + ", name=" + name + ", nationality=" + nationality + '}';
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.id);
-        hash = 83 * hash + Objects.hashCode(this.name);
-        hash = 83 * hash + Objects.hashCode(this.nationality);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.nationality);
         return hash;
     }
 
@@ -84,7 +73,7 @@ public abstract class MovieWorker implements  Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final MovieWorker other = (MovieWorker) obj;
+        final MovieWorkerDto other = (MovieWorkerDto) obj;
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -96,7 +85,11 @@ public abstract class MovieWorker implements  Serializable {
         }
         return true;
     }
-    
+
+    @Override
+    public String toString() {
+        return "MovieWorkerDto{" + "id=" + id + ", name=" + name + ", nationality=" + nationality + '}';
+    }
     
     
 }

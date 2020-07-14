@@ -6,6 +6,8 @@
 package com.petrovic.jovan.cinema.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -22,7 +24,12 @@ public class MovieDto implements Serializable {
     private String language;
     private double ratingIMDb;
 
+    private List<DirectorDto> directorDtos;
+    private List<ActorDto> actorDtos;
+    
     public MovieDto() {
+        directorDtos = new ArrayList<>();
+        actorDtos = new ArrayList<>();
     }
 
     public MovieDto(String title, int duration, Genre genre, int year, String language, double ratingIMDb) {
@@ -32,6 +39,8 @@ public class MovieDto implements Serializable {
         this.year = year;
         this.language = language;
         this.ratingIMDb = ratingIMDb;
+        directorDtos = new ArrayList<>();
+        actorDtos = new ArrayList<>();
     }  
     
     public MovieDto(Long id, String title, int duration, Genre genre, int year, String language, double ratingIMDb) {
@@ -153,6 +162,22 @@ public class MovieDto implements Serializable {
     @Override
     public String toString() {
         return "MovieDto{" + "id=" + id + ", title=" + title + ", duration=" + duration + ", genre=" + genre + ", yearr=" + year + ", languagee=" + language + ", ratingIMDb=" + ratingIMDb + '}';
+    }
+
+    public List<DirectorDto> getDirectorDtos() {
+        return directorDtos;
+    }
+
+    public void setDirectorDtos(List<DirectorDto> directorDtos) {
+        this.directorDtos = directorDtos;
+    }
+
+    public List<ActorDto> getActorDtos() {
+        return actorDtos;
+    }
+
+    public void setActorDtos(List<ActorDto> actorDtos) {
+        this.actorDtos = actorDtos;
     }
 
     
