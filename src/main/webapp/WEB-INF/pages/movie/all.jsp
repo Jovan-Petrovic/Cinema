@@ -14,7 +14,6 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Id</th>
                         <th scope="col">Title</th>
                         <th scope="col">Duration</th>
@@ -31,7 +30,6 @@
                         var="movie"
                         varStatus="loop">
                         <tr>
-                            <td>${loop.index+1}</td>
                             <td>${movie.id}</td>
                             <td>${movie.title}</td>
                             <td>${movie.duration}</td>

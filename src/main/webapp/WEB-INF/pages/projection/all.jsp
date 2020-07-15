@@ -14,7 +14,6 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Id</th>
                         <th scope="col">Date and time</th>
                         <th scope="col">Room</th>
@@ -29,7 +28,6 @@
                         var="projection"
                         varStatus="loop">
                         <tr>
-                            <td>${loop.index+1}</td>
                             <td>${projection.id}</td>
                             <td>${projection.dateTime}</td>
                             <td>${projection.room}</td>

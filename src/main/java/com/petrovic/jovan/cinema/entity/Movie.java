@@ -200,5 +200,13 @@ public class Movie implements Serializable {
         this.actors = actors;
     }
     
+    public void addDirector(Director director) {
+        directors.add(director);
+        director.getMovies().add(this);
+    }
     
+    public void addActor(Actor actor) {
+        actors.add(actor);
+        actor.getMovies().add(this);
+    }
 }

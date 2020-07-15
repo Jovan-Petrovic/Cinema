@@ -110,7 +110,7 @@ public class ProjectionController {
     public ModelAndView delete(@PathVariable(name = "id") Long id) {
         System.out.println("Delete..." + id);
         projectionService.delete(id);
-        ModelAndView modelAndView = new ModelAndView("projection/all");
+        ModelAndView modelAndView = new ModelAndView("redirect:/projection/all");
         modelAndView.addObject("message", "Projection " + id + " is deleted!");
         return modelAndView;
     }

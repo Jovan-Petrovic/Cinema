@@ -113,7 +113,7 @@ public class MovieController {
     public ModelAndView delete(@PathVariable(name = "id") Long id) {
         System.out.println("Delete..." + id);
         movieService.delete(id);
-        ModelAndView modelAndView = new ModelAndView("movie/all");
+        ModelAndView modelAndView = new ModelAndView("redirect:/movie/all");
         modelAndView.addObject("message", "Movie " + id + " is deleted!");
         return modelAndView;
     }

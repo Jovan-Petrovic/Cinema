@@ -40,7 +40,7 @@ public class UserController {
         System.out.println("====================================================================");
         System.out.println("====================   UserController: home()    ===================");
         System.out.println("====================================================================");
-        return "user/movie/home";
+        return "user/home";
     }
     
     @GetMapping(value = "movie")
