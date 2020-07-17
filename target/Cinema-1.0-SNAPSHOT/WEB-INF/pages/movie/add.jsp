@@ -28,6 +28,20 @@
             el.value = opt;
             chosenActorsDropDown.appendChild(el);
         }
+        var elements = document.getElementById("actorDtos").options;
+
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].selected = false;
+        }
+    }
+
+    function removeActors() {
+        actorsIds = [];
+        var chosenDirectorsDropDown = document.getElementById("selectedActor");
+        chosenDirectorsDropDown.options.length = 0;
+
+        console.log("actorsIds")
+        console.log(actorsIds);
     }
 
     let directorsIds = [];
@@ -51,6 +65,21 @@
             el.value = opt;
             chosenDirectorsDropDown.appendChild(el);
         }
+
+        var elements = document.getElementById("directorDtos").options;
+
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].selected = false;
+        }
+    }
+
+    function removeDirectors() {
+        directorsIds = [];
+        var chosenDirectorsDropDown = document.getElementById("selectedDirector");
+        chosenDirectorsDropDown.options.length = 0;
+
+        console.log("directorsIds")
+        console.log(directorsIds);
     }
 
     function onSubmitForm() {
@@ -103,8 +132,10 @@
             <div class="form-label-group">
                 <label for="selectedDirector">Selected directors</label>
                 <select id="selectedDirector">
-                    <!--<option>Choose a actor</option>-->
                 </select>
+                <p/>
+                <div><button id="removeAllDirectors" onclick="event.preventDefault(); removeDirectors()">Remove all directors</button> </div>
+                <p/>
             </div>
 
             <div class="form-label-group">
@@ -119,6 +150,9 @@
                 <select id="selectedActor">
                     <!--<option>Choose a actor</option>-->
                 </select>
+                <p/>
+                <div><button id="removeAllActors" onclick="event.preventDefault(); removeActors()">Remove all actors</button> </div>
+                <p/>
             </div>
 
             <div>Movie title:</div>
