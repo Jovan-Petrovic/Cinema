@@ -7,6 +7,7 @@ package com.petrovic.jovan.cinema.converter;
 
 import com.petrovic.jovan.cinema.dto.Genre;
 import com.petrovic.jovan.cinema.dto.MovieDto;
+import com.petrovic.jovan.cinema.dto.MovieSaveDto;
 import com.petrovic.jovan.cinema.entity.Movie;
 
 /**
@@ -22,6 +23,11 @@ public class MovieConverter {
     
     public static Movie convertFromDtoToEntity(MovieDto movieDto) {
         Movie movie = new Movie(movieDto.getId(), movieDto.getTitle(), movieDto.getDuration(), movieDto.getGenre(), movieDto.getYear(), movieDto.getLanguage(), movieDto.getRatingIMDb());
+        return movie;
+    }
+    
+    public static Movie convertFromSaveDtoToEntity(MovieSaveDto movieSaveDto){
+        Movie movie = new Movie(movieSaveDto.getId(), movieSaveDto.getTitle(), movieSaveDto.getDuration(), movieSaveDto.getGenre(), movieSaveDto.getYear(), movieSaveDto.getLanguage(), movieSaveDto.getRatingIMDb());
         return movie;
     }
 }

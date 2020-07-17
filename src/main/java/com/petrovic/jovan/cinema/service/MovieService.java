@@ -6,6 +6,7 @@
 package com.petrovic.jovan.cinema.service;
 
 import com.petrovic.jovan.cinema.dto.MovieDto;
+import com.petrovic.jovan.cinema.dto.MovieSaveDto;
 import java.util.List;
 
 /**
@@ -23,4 +24,5 @@ public interface MovieService {
 
     public void save(MovieDto movieDto);
     
+    public void save(MovieSaveDto movieSaveDto);
 }

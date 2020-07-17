@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="base-definition"
+                template="/WEB-INF/pages/tiles/layout/defaultLayout.jsp">
+        <put-attribute name="title" value=""></put-attribute>
+        <put-attribute name="header"
+                       value="/WEB-INF/pages/tiles/template/defaultHeader.jsp">
+        </put-attribute>
+        <put-attribute name="footer"
+                       value="/WEB-INF/pages/tiles/template/defaultFooter.jsp">
+        </put-attribute>
+        <put-attribute name="menu"
+                       value="/WEB-INF/pages/tiles/template/defaultMenu.jsp">
+        </put-attribute>
+        <put-attribute name="body" value=""></put-attribute>
+    </definition>
+    
+    <definition name="base-definition_user"
+                template="/WEB-INF/pages/tiles/layout/defaultLayout.jsp">
+        <put-attribute name="title" value=""></put-attribute>
+        <put-attribute name="header"
+                       value="/WEB-INF/pages/tiles/template/defaultHeader.jsp">
+        </put-attribute>
+        <put-attribute name="footer"
+                       value="/WEB-INF/pages/tiles/template/defaultFooter.jsp">
+        </put-attribute>
+        <put-attribute name="menu"
+                       value="/WEB-INF/pages/tiles/template/defaultMenuUser.jsp">
+        </put-attribute>
+        <put-attribute name="body" value=""></put-attribute>
+    </definition>
+
+    <!-- index page -->
+    <definition name="home" extends="base-definition">
+        <put-attribute name="title" value="Home page"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/index.jsp">
+        </put-attribute>
+    </definition>
+        
+    <!-- ##################################################################################### -->
+    <!-- MOVIE -->
+    <definition name="movie/home" extends="base-definition">
+        <put-attribute name="title" value="Home movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/home.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="movie/add" extends="base-definition">
+        <put-attribute name="title" value="Add movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/add.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="movie/all" extends="base-definition">
+        <put-attribute name="title" value="All movies"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/all.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="movie/view" extends="base-definition">
+        <put-attribute name="title" value="View movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/view.jsp">
+        </put-attribute>
+    </definition>
+    
+    <!-- ##################################################################################### -->
+    <!-- PROJECTION -->
+    <definition name="projection/home" extends="base-definition">
+        <put-attribute name="title" value="Home projection"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/projection/home.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="projection/add" extends="base-definition">
+        <put-attribute name="title" value="Add projection"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/projection/add.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="projection/all" extends="base-definition">
+        <put-attribute name="title" value="All projections"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/projection/all.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="projection/view" extends="base-definition">
+        <put-attribute name="title" value="View projection"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/projection/view.jsp">
+        </put-attribute>
+    </definition>
+    
+    <!-- ##################################################################################### -->
+    <!-- USER -->
+    <definition name="user/home" extends="base-definition_user">
+        <put-attribute name="title" value="Home user"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/home.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="user/movie/home" extends="base-definition_user">
+        <put-attribute name="title" value="Home movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/movie/home.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="user/movie/all" extends="base-definition_user">
+        <put-attribute name="title" value="All movies"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/movie/all.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="user/movie/view" extends="base-definition_user">
+        <put-attribute name="title" value="View movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/movie/view.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="user/projection/home" extends="base-definition_user">
+        <put-attribute name="title" value="Home projection"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/projection/home.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="user/projection/all" extends="base-definition_user">
+        <put-attribute name="title" value="All projections"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/projection/all.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="user/projection/view" extends="base-definition_user">
+        <put-attribute name="title" value="View projection"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/projection/view.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="user/reservation/home" extends="base-definition_user">
+        <put-attribute name="title" value="Home reservation"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/user/reservation/home.jsp">
+        </put-attribute>
+    </definition>
+    
+
+    <!-- ##################################################################################### -->
+    <!-- EXCEPTION -->
+    <definition name="error/globalException"
+                extends="base-definition">
+        <put-attribute name="title"
+                       value="Exception">
+        </put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/error/globalException.jsp">
+        </put-attribute>
+    </definition>	
+	
+
+
+
+</tiles-definitions>

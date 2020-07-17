@@ -6,6 +6,7 @@
 package com.petrovic.jovan.cinema.repository;
 
 import com.petrovic.jovan.cinema.entity.Actor;
+import java.util.Optional;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

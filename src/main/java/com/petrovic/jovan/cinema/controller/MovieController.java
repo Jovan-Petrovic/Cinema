@@ -5,15 +5,21 @@
  */
 package com.petrovic.jovan.cinema.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petrovic.jovan.cinema.dto.ActorDto;
 import com.petrovic.jovan.cinema.dto.DirectorDto;
 import com.petrovic.jovan.cinema.dto.Genre;
 import com.petrovic.jovan.cinema.dto.MovieDto;
+import com.petrovic.jovan.cinema.dto.MovieSaveDto;
 import com.petrovic.jovan.cinema.service.ActorService;
 import com.petrovic.jovan.cinema.service.DirectorService;
 import com.petrovic.jovan.cinema.service.MovieService;
 import com.petrovic.jovan.cinema.validator.MovieValidator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +34,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -36,7 +44,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping(value = "/movie")
 public class MovieController {
-    
+
+    private final ObjectMapper mapper = new ObjectMapper();
+
     private final MovieService movieService;
     private final MovieValidator movieValidator;
     private final DirectorService directorService;
@@ -57,7 +67,7 @@ public class MovieController {
         System.out.println("====================================================================");
         return "movie/home";
     }
-    
+
     @GetMapping(value = "add")
     public ModelAndView add() {
         System.out.println("====================================================================");
@@ -67,7 +77,7 @@ public class MovieController {
         ModelAndView modelAndView = new ModelAndView("movie/add");
         return modelAndView;
     }
-    
+
     @GetMapping(value = "all")
     public ModelAndView getAll() {
         System.out.println("====================================================================");
@@ -77,30 +87,40 @@ public class MovieController {
         modelAndView.addObject("message", "All movies!");
         return modelAndView;
     }
-    
-    @PostMapping(value = "save")
-    public String save(@ModelAttribute(name = "movieDto") @Validated MovieDto movieDto, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+
+    @PostMapping(value = "save", consumes = APPLICATION_JSON_VALUE)
+//    @PostMapping(value = "save", consumes = APPLICATION_JSON_VALUE)
+//    public String save(@ModelAttribute(name = "movieSaveDto") @Validated MovieDto movieSaveDto, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    public String save(HttpServletRequest request, @RequestBody String movieDtoJson) {
         System.out.println("===================================================================================");
         System.out.println("====================   MovieController: save(@ModelAttribute)    ==================");
         System.out.println("===================================================================================");
-        System.out.println(movieDto);
-        ModelAndView modelAndView = new ModelAndView();
-        if (result.hasErrors()) {
-            model.addAttribute("invalid", "One or more fields are invalid");
-            model.addAttribute("movieDto", movieDto);
-            return "movie/add";
-        } else {
-            movieService.save(movieDto);
-            redirectAttributes.addFlashAttribute("message", "Movie is saved");
-            return "redirect:/movie/add";
+//        System.out.println(movieDtoJson);
+        try {
+            MovieSaveDto movieSaveDto = mapper.readValue(movieDtoJson, MovieSaveDto.class);
+            System.out.println(movieSaveDto);
+            movieService.save(movieSaveDto);
+        } catch (JsonProcessingException ex) {
+            System.out.println(ex.getMessage());
         }
+
+//        ModelAndView modelAndView = new ModelAndView();
+//        if (result.hasErrors()) {
+//            model.addAttribute("invalid", "One or more fields are invalid");
+//            model.addAttribute("movieSaveDto", movieSaveDto);
+//            return "movie/add";
+//        } else {
+//            movieService.save(movieSaveDto);
+//            redirectAttributes.addFlashAttribute("message", "Movie is saved");
+//            return "redirect:/movie/add";
+//        }
+        return "redirect:/movie/add";
     }
-    
-    @InitBinder
-    private void initBinder(WebDataBinder binder) {
-        binder.setValidator(movieValidator);
-    }
-    
+
+//    @InitBinder
+//    private void initBinder(WebDataBinder binder) {
+//        binder.setValidator(movieValidator);
+//    }
     @GetMapping(value = "/{id}/view")
     public ModelAndView view(@PathVariable(name = "id") Long id) {
         ModelAndView modelAndView = new ModelAndView("movie/view");
@@ -117,27 +137,27 @@ public class MovieController {
         modelAndView.addObject("message", "Movie " + id + " is deleted!");
         return modelAndView;
     }
-    
+
     @ModelAttribute(name = "movies")
     private List<MovieDto> getMovies() {
         return movieService.getAll();
     }
-    
+
     @ModelAttribute(name = "movieDto")
     private MovieDto getCityDto() {
         return new MovieDto(0L, "/", 0, Genre.TRILER, 0, "/", 0d);
     }
-    
+
     @ModelAttribute(name = "directors")
     private List<DirectorDto> getDirectors() {
         return directorService.getAll();
     }
-    
+
     @ModelAttribute(name = "actors")
     private List<ActorDto> getActors() {
         return actorService.getAll();
     }
-    
+
     /*
     @ExceptionHandler(NullPointerException.class)
 	public String exceptionHandler(NullPointerException nullPointerException,RedirectAttributes redirectAttributes) {

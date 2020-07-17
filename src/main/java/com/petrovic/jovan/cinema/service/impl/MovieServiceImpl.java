@@ -8,11 +8,17 @@ package com.petrovic.jovan.cinema.service.impl;
 import com.petrovic.jovan.cinema.converter.MovieConverter;
 import com.petrovic.jovan.cinema.dto.Genre;
 import com.petrovic.jovan.cinema.dto.MovieDto;
+import com.petrovic.jovan.cinema.dto.MovieSaveDto;
+import com.petrovic.jovan.cinema.entity.Actor;
+import com.petrovic.jovan.cinema.entity.Director;
 import com.petrovic.jovan.cinema.entity.Movie;
+import com.petrovic.jovan.cinema.repository.ActorRepository;
+import com.petrovic.jovan.cinema.repository.DirectorRepository;
 import com.petrovic.jovan.cinema.repository.MovieRepository;
 import com.petrovic.jovan.cinema.service.MovieService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,10 +29,16 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class MovieServiceImpl implements MovieService{
+public class MovieServiceImpl implements MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
+
+    @Autowired
+    private ActorRepository actorRepository;
+
+    @Autowired
+    private DirectorRepository directorRepository;
 
     @Override
     public List<MovieDto> getAll() {
@@ -64,8 +76,18 @@ public class MovieServiceImpl implements MovieService{
         movieRepository.save(new Movie(movieDto.getTitle(), movieDto.getDuration(), movieDto.getGenre(), movieDto.getYear(), movieDto.getLanguage(), movieDto.getRatingIMDb()));
     }
 
-    
-    
-    
-    
+    @Override
+    public void save(MovieSaveDto msd) {
+        Movie movie = MovieConverter.convertFromSaveDtoToEntity(msd);
+        for (Long actorId : msd.getActorIds()) {
+            Actor actor = actorRepository.findById(actorId).get();
+            movie.addActor(actor);
+        }
+        for (Long directorId : msd.getDirectorIds()) {
+            Director director = directorRepository.findById(directorId).get();
+            movie.addDirector(director);
+        }
+        movieRepository.save(movie);
+    }
+
 }
