@@ -60,5 +60,11 @@ public class ProjectionServiceImpl implements ProjectionService{
     public void save(ProjectionDto projectionDto) {
         projectionRepository.save(ProjectionConverter.convertFromDtoToEntity(projectionDto));
     }
+
+    @Override
+    public void saveOrUpdate(ProjectionDto projectionDto) {
+        Projection projection = ProjectionConverter.convertFromDtoToEntity(projectionDto);
+        projectionRepository.save(projection);
+    }
     
 }

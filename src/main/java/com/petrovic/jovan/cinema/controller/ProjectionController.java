@@ -93,9 +93,29 @@ public class ProjectionController {
         }
     }
     
+    @PostMapping(value = "update")
+    public String update(@ModelAttribute(name = "projectionDto") ProjectionDto projectionDto, RedirectAttributes redirectAttributes) {
+        System.out.println("===================================================================================");
+        System.out.println("====================   ProjectionController: update(@ModelAttribute)    ==================");
+        System.out.println("===================================================================================");
+        System.out.println(projectionDto);
+        projectionService.saveOrUpdate(projectionDto);
+        redirectAttributes.addFlashAttribute("messageProjection", "Projection is updated");
+        return "redirect:/projection/all";
+
+    }
+    
     @InitBinder
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(projectionValidator);
+    }
+    
+    @GetMapping(value = "/{id}/updateView")
+    public ModelAndView updateView(@PathVariable(name = "id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("projection/update");
+        modelAndView.addObject("messageProjection", "Movie " + id + "!");
+        modelAndView.addObject("projectionDto", projectionService.findByNumber(id));
+        return modelAndView;
     }
     
     @GetMapping(value = "/{id}/view")

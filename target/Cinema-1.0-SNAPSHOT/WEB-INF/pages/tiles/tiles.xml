@@ -68,6 +68,12 @@
                        value="/WEB-INF/pages/movie/view.jsp">
         </put-attribute>
     </definition>
+    <definition name="movie/update" extends="base-definition">
+        <put-attribute name="title" value="Update movie"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/movie/update.jsp">
+        </put-attribute>
+    </definition>
     
     <!-- ##################################################################################### -->
     <!-- PROJECTION -->
@@ -93,6 +99,12 @@
         <put-attribute name="title" value="View projection"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/projection/view.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="projection/update" extends="base-definition">
+        <put-attribute name="title" value="Update projection"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/projection/update.jsp">
         </put-attribute>
     </definition>
     

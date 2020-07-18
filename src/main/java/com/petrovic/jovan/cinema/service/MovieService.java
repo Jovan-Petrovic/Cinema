@@ -25,4 +25,6 @@ public interface MovieService {
     public void save(MovieDto movieDto);
     
     public void save(MovieSaveDto movieSaveDto);
+    
+    public void saveOrUpdate(MovieDto movieDto);
 }

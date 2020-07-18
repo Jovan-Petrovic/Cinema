@@ -22,4 +22,6 @@ public interface ProjectionService {
     public ProjectionDto findByName(String name);
 
     public void save(ProjectionDto projectionDto);
+    
+    public void saveOrUpdate(ProjectionDto projectionDto);
 }

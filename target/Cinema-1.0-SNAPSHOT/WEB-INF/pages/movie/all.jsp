@@ -6,8 +6,8 @@
 
 
     <form>
-        <c:if test="${not empty message}">
-            <div class="alert alert-info" role="alert mb-2">${message}</div>
+        <c:if test="${not empty messageMovie}">
+            <div class="alert alert-info" role="alert mb-2">${messageMovie}</div>
         </c:if>
 
         <div class="container-fluid">
@@ -21,7 +21,7 @@
                         <th scope="col">Year</th>
                         <th scope="col">Language</th>
                         <th scope="col">IMDb rating</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Action</th>                       
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +51,9 @@
                                             <a class="dropdown-item" href="<c:url value = "/movie/${movie.id}/view/">
 
                                                 </c:url>">View</a>
+                                            <a class="dropdown-item" href="<c:url value = "/movie/${movie.id}/updateView/">
+
+                                                </c:url>">Update</a>
                                         </div>
                                     </div>
                                 </ul>

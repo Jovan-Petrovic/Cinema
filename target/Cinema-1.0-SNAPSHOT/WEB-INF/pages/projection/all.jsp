@@ -6,8 +6,8 @@
 
 
     <form>
-        <c:if test="${not empty message}">
-            <div class="alert alert-info" role="alert mb-2">${message}</div>
+        <c:if test="${not empty messageProjection}">
+            <div class="alert alert-info" role="alert mb-2">${messageProjection}</div>
         </c:if>
 
         <div class="container-fluid">
@@ -47,6 +47,9 @@
                                             <a class="dropdown-item" href="<c:url value = "/projection/${projection.id}/view/">
 
                                                 </c:url>">View</a>
+                                            <a class="dropdown-item" href="<c:url value = "/projection/${projection.id}/updateView/">
+
+                                                </c:url>">Update</a>
                                         </div>
                                     </div>
                                 </ul>

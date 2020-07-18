@@ -91,7 +91,7 @@ public class MovieController {
     @PostMapping(value = "save", consumes = APPLICATION_JSON_VALUE)
 //    @PostMapping(value = "save", consumes = APPLICATION_JSON_VALUE)
 //    public String save(@ModelAttribute(name = "movieSaveDto") @Validated MovieDto movieSaveDto, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
-    public String save(HttpServletRequest request, @RequestBody String movieDtoJson) {
+    public String save(HttpServletRequest request, @RequestBody String movieDtoJson, RedirectAttributes redirectAttributes) {
         System.out.println("===================================================================================");
         System.out.println("====================   MovieController: save(@ModelAttribute)    ==================");
         System.out.println("===================================================================================");
@@ -100,6 +100,7 @@ public class MovieController {
             MovieSaveDto movieSaveDto = mapper.readValue(movieDtoJson, MovieSaveDto.class);
             System.out.println(movieSaveDto);
             movieService.save(movieSaveDto);
+            redirectAttributes.addFlashAttribute("message", "Movie is saved");
         } catch (JsonProcessingException ex) {
             System.out.println(ex.getMessage());
         }
@@ -115,6 +116,26 @@ public class MovieController {
 //            return "redirect:/movie/add";
 //        }
         return "redirect:/movie/add";
+    }
+    
+    @PostMapping(value = "update")
+    public String update(@ModelAttribute(name = "movieDto") MovieDto movieDto, RedirectAttributes redirectAttributes) {
+        System.out.println("===================================================================================");
+        System.out.println("====================   MovieController: update(@ModelAttribute)    ==================");
+        System.out.println("===================================================================================");
+        System.out.println(movieDto);
+        movieService.saveOrUpdate(movieDto);
+        redirectAttributes.addFlashAttribute("messageMovie", "Movie is updated");
+        return "redirect:/movie/all";
+
+    }
+    
+    @GetMapping(value = "/{id}/updateView")
+    public ModelAndView update(@PathVariable(name = "id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("movie/update");
+        modelAndView.addObject("messageMovie", "Movie " + id + "!");
+        modelAndView.addObject("movieDto", movieService.findByNumber(id));
+        return modelAndView;
     }
 
 //    @InitBinder

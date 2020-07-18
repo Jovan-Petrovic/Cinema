@@ -73,8 +73,11 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void save(MovieDto movieDto) {
-        movieRepository.save(new Movie(movieDto.getTitle(), movieDto.getDuration(), movieDto.getGenre(), movieDto.getYear(), movieDto.getLanguage(), movieDto.getRatingIMDb()));
+        Movie movie = new Movie(movieDto.getTitle(), movieDto.getDuration(), movieDto.getGenre(), movieDto.getYear(), movieDto.getLanguage(), movieDto.getRatingIMDb());
+        movieRepository.save(movie);
     }
+    
+    
 
     @Override
     public void save(MovieSaveDto msd) {
@@ -87,6 +90,12 @@ public class MovieServiceImpl implements MovieService {
             Director director = directorRepository.findById(directorId).get();
             movie.addDirector(director);
         }
+        movieRepository.save(movie);
+    }
+
+    @Override
+    public void saveOrUpdate(MovieDto movieDto) {
+        Movie movie = new Movie(movieDto.getId(), movieDto.getTitle(), movieDto.getDuration(), movieDto.getGenre(), movieDto.getYear(), movieDto.getLanguage(), movieDto.getRatingIMDb());
         movieRepository.save(movie);
     }
 
